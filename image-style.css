@@ -1,6 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Lato);
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
+:root {
+  --secondary: rgb(157, 191, 225);
+  --font: rgb(191, 191, 191);
+  --background: rgb(31, 31, 31);
+}
+
 html,
 body {
   width: 100%;
@@ -13,21 +19,22 @@ body * {
   box-sizing: border-box;
 }
 
-main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1em;
-}
 select {
-    height: 2rem;
-    border-radius: 0.25rem;
-    width: 100px;
+  height: 2rem;
+  border-radius: 0.25rem;
+  width: 100px;
 }
 select option {
-    text-align: center;
+  text-align: center;
 }
+
+main {
+  display: grid;
+  grid-template-rows: min-height 1fr 1fr;
+  gap: 1rem;
+  place-items: center;
+}
+
 img {
   max-width: 75vw;
   height: auto;
@@ -44,6 +51,7 @@ img {
   place-items: center;
 }
 .header .attribution {
+  margin-top: 0rem;
   font-size: 4rem;
 }
 .header .attribution + p {
@@ -62,7 +70,7 @@ img {
 
 .card {
   padding: 1rem;
-  border: 1px black solid;
+  border: 1px var(--secondary) solid;
   border-radius: 2rem;
   display: grid;
   place-items: center;
@@ -73,4 +81,53 @@ img {
   text-transform: uppercase;
   font-weight: 600;
   text-align: center;
+  margin-bottom: 1rem;
+}
+
+a {
+  color: #8c8cfa;
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+embed[type="application/pdf"] {
+  filter: invert(90%);
+}
+
+html {
+  color: var(--font);
+  background: var(--background) !important;
+}
+
+body {
+  background-color: var(--background);
+  background-image: none !important;
+}
+
+input, select, textarea, button {
+  color: var(--font);
+  background-color: var(--background);
+}
+
+font {
+  color: var(--font);
+}
+
+html {
+  filter: contrast(100%) brightness(100%) saturate(100%);
+}
+
+a {
+  color: var(--secondary);
+  text-decoration: none;
 }
