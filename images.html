@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible"
+        content="IE=edge" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet"
+        href="./image-style.css" />
+    <script src='./query.js'></script>
+</head>
+
+<body>
+    <main>
+        <article class="header">
+            <div>
+                <p class="attribution">Original by <a href="https://github.com/jellyfishfingers">JY</a></p>
+                <p>Traffic Information from<a href="https://data.gov.sg/dataset/traffic-images"> data.gov.sg API</a></p>
+                <form id="myForm">
+                    <select id="camId">
+
+                    </select>
+                </form>
+            </div>
+        </article>
+        <article class="card">
+            <div class="title">Today</div>
+            <img id='today'
+                width="600"
+                height="500"
+                src="https://source.unsplash.com/random/600x600/?dog,cats,hamsters">
+        </article>
+        <article class="card">
+            <div class="title">Pre-COVID</div>
+            <img id='before'
+                height="600"
+                width="600"
+                src="https://source.unsplash.com/random/600x600/?dog,cats,hamsters">
+        </article>
+
+    </main>
+</body>
+
+</html>
