@@ -4,7 +4,7 @@
 :root {
     --secondary: rgb(157, 191, 225);
     --font: rgb(191, 191, 191);
-    --background: hsla(0, 0%, 0%, 1);
+    --background: rgb(31, 31, 31);
     --color-bg-darkest: #13141b;
     --color-bg-darker: #1b1e27;
     --color-bg-dark: #232837;
@@ -60,6 +60,7 @@ img {
 .header .attribution {
     margin-top: 0rem;
     font-size: 2.5rem;
+    letter-spacing: 0.15rem;
 }
 .header .attribution + p {
     margin-top: -2.5rem;
@@ -69,6 +70,7 @@ img {
     text-transform: uppercase;
     font-weight: 600;
     text-align: center;
+    letter-spacing: 0.1rem;
 }
 .header div {
     display: grid;
