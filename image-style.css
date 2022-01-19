@@ -33,6 +33,7 @@ main {
   grid-template-rows: min-height 1fr 1fr;
   gap: 1rem;
   place-items: center;
+  padding-bottom: 1rem;
 }
 
 img {
