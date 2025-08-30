@@ -8,49 +8,46 @@ const props =
       };
 
 
-window.addEventListener('DOMContentLoaded',async () => {
+window.addEventListener('DOMContentLoaded', async () => {
+    props.before = document.getElementById('before');
+    props.today = document.getElementById('today');
+    props.select = document.getElementById('camId');
+    props.date = document.querySelector('.date');
 
-  props.before = document.getElementById('before');
-  props.today = document.getElementById('today');
-  props.select = document.getElementById('camId');
-  try {
-    props.before.src = await getBeforeCovid();
-    const today = await fetchUrl(apiUrl);
-    props.today.src = filterData(today);
-    props.ids = getIds(today);
-    for(let i of  props.ids){
-      let opt = new Option(i, i);
-      if(i === causewayCam) {
-        opt.selected = true;
-      }
-      props.select.add(opt)
+    try {
+        const today = await fetchUrl(apiUrl);
+        props.today.src = filterData(today);
+        props.before.src = await getBeforeCovid();
+        props.ids = getIds(today);
+        for (let i of props.ids) {
+            let opt = new Option(i, i);
+            if (i === causewayCam) {
+                opt.selected = true;
+            }
+            props.select.add(opt)
+        }
+        props.select.addEventListener('change', async (evt) => {
+            props.selected = evt.target.value;
+            props.before.src = await getBeforeCovid();
+            props.today.src = await getToday();
+        })
+
+        const currentdate = new Date();
+        props.date.innerHTML = `<b>Image Request Date and Time:</b> ${currentdate.getDate()}/${currentdate.getMonth() + 1}/${currentdate.getFullYear()} ${currentdate.getHours()}:${currentdate.getMinutes()}`;
+    } catch (error) {
+        console.error(error)
     }
-    props.select.addEventListener('change', async (evt)=>{
-      props.selected = evt.target.value;
-      props.before.src = await getBeforeCovid();
-      props.today.src = await getToday();
-    })
-  } catch (error) {
-    console.error(error)
-  }
 });
 
 const getBeforeCovidDate = () => {
-  const tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
-  const localISOTime = (new Date(Date.now() - tzoffset)).toISOString().split('.')[0];
-  return localISOTime.replace(date.getFullYear(), '2019');
+  const now = new Date();
+  const tzoffset = now.getTimezoneOffset() * 60000;
+  const localISOTime = new Date(now - tzoffset).toISOString().split('.')[0];
+  return localISOTime.replace(now.getFullYear(), '2019');
 }
-
-const generateParams = function getParams(){
-  const params = { date_time : getBeforeCovidDate()};
-  return new URLSearchParams(params).toString();
-}
-
 
 const getBeforeCovid = async () => {
-  const url = new URL(apiUrl);
-  url.search = generateParams();
-  console.log(url);
+  const url = `${apiUrl}?date_time=${getBeforeCovidDate()}`;
   const data = await fetchUrl(url);
   return filterData(data);
 }
